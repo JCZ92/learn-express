@@ -37,8 +37,8 @@ app.get('/read/usernames', (req, res) => {
   res.send(usernames);
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // can use req.body later
+// app.use(express.urlencoded({ extended: true }));
 app.use('/write/adduser', addMsgToRequest);
 
 app.post('/write/adduser', (req, res) => {

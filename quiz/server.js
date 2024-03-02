@@ -51,6 +51,19 @@ app.post('/write/adduser', (req, res) => {
   res.send('done');
 })
 
+// add user search email service
+app.use('/read/username/:name', addMsgToRequest);
+app.get('/read/username/:name', (req, res) => {
+  let user = req.users.filter(function(user) {
+    return user.username === req.params.name;
+  });
+  if(!user.length) {
+    user = {error: 'User not found'}
+    return res.send(user);
+  }
+  res.send(user);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
